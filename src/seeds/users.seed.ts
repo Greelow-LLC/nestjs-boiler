@@ -6,16 +6,16 @@ export const seedUsers = async (prisma: PrismaClient) => {
 
   return Promise.all([
     prisma.user.upsert({
-      where: { email: 'nicojoaquin1998@gmail.com' },
+      where: { email: 'admin@gmail.com' },
       update: {},
       create: {
-        email: 'nicojoaquin1998@gmail.com',
+        email: 'admin@gmail.com',
         password,
         roles: Role.ADMIN,
         profile: {
           create: {
-            firstName: 'Nicolás',
-            lastName: 'Joaquin',
+            firstName: 'Admin',
+            lastName: 'Greelow',
             posts: {
               create: {
                 title: 'Post',
