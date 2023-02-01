@@ -1,7 +1,7 @@
 {
   "name": "nestjs-boiler",
   "version": "0.0.1",
-  "description": "Nest JS Boilerplate for greelow projects.",
+  "description": "Nest JS boilerplate for greelow projects.",
   "author": "Web Tea",
   "private": true,
   "license": "UNLICENSED",
