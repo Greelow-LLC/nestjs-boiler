@@ -5,51 +5,52 @@
 [circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
 [circleci-url]: https://circleci.com/gh/nestjs/nest
 
-  <p align="center">Greelow backend boilerplate with Nest Js; A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
+  <p align="center">Greelow boilerplate for backend, with Nest JS; A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
     <p align="center">
 
 ## Installation
 
 ```bash
+# With SSH
+$ git clone git@github.com:Greelow-LLC/nestjs-boiler.git
+
+# With HTTPS
+$ git clone https://github.com/Greelow-LLC/nestjs-boiler.git
+
+$ cd nestjs-boiler
+
 $ yarn install
+
+# Signin to dotenv-vault using an authorized email
+$ yarn env:login
+
+# Pull env variables to local
+$ yarn env:pull
+```
+
+## Setting up database
+
+```bash
+# Must have docker-compose
+$ yarn db:up
+
+# Only development (also, do this every time a change on the schema is made)
+$ yarn migrate
+$ yarn generate
+
+# Only production
+$ yarn db:deploy
+
+$ yarn seed
 ```
 
 ## Running the app
 
 ```bash
 # development
-$ yarn run start
-
-# watch mode
-$ yarn run start:dev
+$ yarn dev
 
 # production mode
-$ yarn run start:prod
+$ yarn build
+$ yarn start:prod
 ```
-
-## Test
-
-```bash
-# unit tests
-$ yarn run test
-
-# e2e tests
-$ yarn run test:e2e
-
-# test coverage
-$ yarn run test:cov
-```
-
-## Support
-
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
-
-## Stay in touch
-
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
-
-## License
-
-Nest is [MIT licensed](LICENSE).
