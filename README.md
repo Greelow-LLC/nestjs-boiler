@@ -23,7 +23,7 @@ $ cd nestjs-boiler
 
 $ yarn install
 
-# Signin to dotenv-vault using an authorized email
+# Signin to dotenv-vault using greelownestboiler@gmail.com
 $ yarn env:login
 
 # Pull env variables to local
