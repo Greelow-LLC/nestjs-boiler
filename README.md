@@ -40,10 +40,10 @@ $ yarn db:up
 $ yarn migrate
 $ yarn generate
 
+$ yarn seed
+
 # Only production
 $ yarn db:deploy
-
-$ yarn seed
 ```
 
 ## Running the app
@@ -55,4 +55,7 @@ $ yarn dev
 # production mode
 $ yarn build
 $ yarn start:prod
+
+# Prisma studio
+$ yarn studio
 ```
