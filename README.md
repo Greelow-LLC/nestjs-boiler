@@ -49,13 +49,16 @@ $ yarn db:deploy
 ## Running the app
 
 ```bash
-# development
+# Development
 $ yarn dev
 
-# production mode
+# Production
 $ yarn build
 $ yarn start:prod
 
 # Prisma studio
 $ yarn studio
+
+# Api endpoints
+http://localhost:3001/api 
 ```
