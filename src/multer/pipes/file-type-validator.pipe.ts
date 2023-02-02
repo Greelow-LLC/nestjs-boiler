@@ -1,9 +1,10 @@
+import * as fs from 'fs';
+
 import { BadRequestException } from '@nestjs/common';
 import {
   FileTypeValidator as DefaultFileTypeValidator,
   FileTypeValidatorOptions,
 } from '@nestjs/common';
-import * as fs from 'fs';
 
 export class FileTypeValidator extends DefaultFileTypeValidator {
   constructor(
@@ -17,7 +18,7 @@ export class FileTypeValidator extends DefaultFileTypeValidator {
     const isArray = Array.isArray(fileOrFiles);
 
     const isValid = isArray
-      ? fileOrFiles.every((file) => super.isValid(file))
+      ? fileOrFiles.every(file => super.isValid(file))
       : super.isValid(fileOrFiles);
 
     if (isArray) {
@@ -39,7 +40,7 @@ export class FileTypeValidator extends DefaultFileTypeValidator {
     const isArray = Array.isArray(fileOrFiles);
 
     isArray
-      ? fileOrFiles.map((file) => fs.unlinkSync(file.path))
+      ? fileOrFiles.map(file => fs.unlinkSync(file.path))
       : fs.unlinkSync(fileOrFiles.path);
 
     throw new BadRequestException(customMessage ?? this.message);

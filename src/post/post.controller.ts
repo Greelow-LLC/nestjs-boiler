@@ -9,13 +9,12 @@ import {
   Query,
   ParseIntPipe,
 } from '@nestjs/common';
-import { PostService } from './post.service';
-import { CreatePostDto, GetPostsDto } from './dto';
-import { UpdatePostDto } from './dto';
 import { UseGuards } from '@nestjs/common';
-import { JwtGuard } from '../auth/guards';
-import { Public, GetUser } from '../auth/decorators';
 import { User } from '@prisma/client';
+import { Public, GetUser } from 'src/auth/decorators';
+import { JwtGuard } from 'src/auth/guards';
+import { UpdatePostDto, CreatePostDto, GetPostsDto } from 'src/post/dto';
+import { PostService } from 'src/post/post.service';
 
 @UseGuards(JwtGuard)
 @Controller('posts')

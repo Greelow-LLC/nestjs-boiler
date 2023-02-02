@@ -4,11 +4,11 @@ import {
   VersioningType,
 } from '@nestjs/common';
 import { HttpAdapterHost } from '@nestjs/core';
+import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
+import { useContainer } from 'class-validator';
 import * as cookieParser from 'cookie-parser';
 import { PrismaClientExceptionFilter } from 'nestjs-prisma';
-import { useContainer } from 'class-validator';
 import { AppModule } from 'src/app.module';
-import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 
 export const useAppMiddlewares = (app: INestApplication) => {
   app.use(cookieParser());

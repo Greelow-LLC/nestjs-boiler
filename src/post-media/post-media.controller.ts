@@ -12,11 +12,11 @@ import { GetUser, Roles } from 'src/auth/decorators';
 import { RolesGuard, JwtGuard } from 'src/auth/guards';
 import { RemoveFilesInterceptor } from 'src/interpectors';
 import { imageValidator } from 'src/multer/validators';
+import { DeleteImagesDto, UploadImagesDto } from 'src/post-media/dto';
 import { PostMediaService } from 'src/post-media/post-media.service';
-import { DeleteImagesDto, UploadImagesDto } from './dto';
 
 @UseGuards(JwtGuard, RolesGuard)
-@Controller('post-media')
+@Controller('posts-media')
 export class PostMediaController {
   constructor(private postMediaService: PostMediaService) {}
 

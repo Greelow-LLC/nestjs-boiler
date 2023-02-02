@@ -1,8 +1,9 @@
+import * as fs from 'fs';
+
 import { BadRequestException, Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { S3 } from 'aws-sdk';
 import { v4 as uuid } from 'uuid';
-import * as fs from 'fs';
 
 @Injectable()
 export class FileUploaderService {
@@ -15,7 +16,7 @@ export class FileUploaderService {
       throw new BadRequestException('File is required');
 
     return Promise.all(
-      files.map((file) =>
+      files.map(file =>
         this.s3
           .upload({
             Bucket: this.bucketName,
@@ -32,7 +33,7 @@ export class FileUploaderService {
       throw new BadRequestException('A key is required');
 
     return Promise.all(
-      keys.map((key) =>
+      keys.map(key =>
         this.s3
           .deleteObject({
             Bucket: this.bucketName,

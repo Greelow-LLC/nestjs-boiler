@@ -1,10 +1,11 @@
 import { INestApplication } from '@nestjs/common';
 import { Test } from '@nestjs/testing';
-import { useAppMiddlewares } from '../utils';
-import { AppModule } from '../src/app.module';
-import { PrismaService } from '../src/prisma/prisma.service';
 import { spec, request } from 'pactum';
+
+import { AppModule } from '../src/app.module';
 import { SignupDto } from '../src/auth/dto/signup.dto';
+import { PrismaService } from '../src/prisma/prisma.service';
+import { useAppMiddlewares } from '../utils';
 
 describe('App e2e', () => {
   const LOCAL_URL = 'http://localhost:3333';
@@ -89,7 +90,7 @@ describe('App e2e', () => {
           (cookie = await spec()
             .post('/auth/signin')
             .withBody({ email, password })
-            .returns((ctx) => ctx.res.headers['set-cookie'][0])),
+            .returns(ctx => ctx.res.headers['set-cookie'][0])),
         ]);
       });
     });
@@ -109,7 +110,7 @@ describe('App e2e', () => {
           .get('/users/get-one')
           .expectStatus(200)
           .withCookies(cookie)
-          .expect((ctx) =>
+          .expect(ctx =>
             expect(ctx.res.body).toMatchObject({
               id: expect.any(Number),
               email: expect.any(String),
@@ -134,7 +135,7 @@ describe('App e2e', () => {
           .withCookies(cookie)
           .withBody({ email: 'nicoupdated@gmail.com', password: 'nico1234' })
           .expectStatus(200)
-          .expect((ctx) =>
+          .expect(ctx =>
             expect(ctx.res.body).toMatchObject({
               email: 'nicoupdated@gmail.com',
             }),
@@ -149,7 +150,7 @@ describe('App e2e', () => {
         return spec()
           .get('/profile')
           .withCookies(cookie)
-          .expect((ctx) =>
+          .expect(ctx =>
             expect(ctx.res.body).toMatchObject({
               id: expect.any(Number),
               ...profileDto,
@@ -173,7 +174,7 @@ describe('App e2e', () => {
           .withCookies(cookie)
           .withBody({ firstName: 'Nicolás' })
           .expectStatus(200)
-          .expect((ctx) =>
+          .expect(ctx =>
             expect(ctx.res.body).toMatchObject({
               ...profileDto,
               firstName: 'Nicolás',
@@ -206,7 +207,7 @@ describe('App e2e', () => {
           .withCookies(cookie)
           .withBody(postDto)
           .expectStatus(201)
-          .expect((ctx) =>
+          .expect(ctx =>
             expect(ctx.res.body).toMatchObject({
               id: expect.any(Number),
               ...postDto,

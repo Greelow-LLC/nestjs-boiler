@@ -1,6 +1,6 @@
 import { Post } from '@prisma/client';
 import { IsNotEmpty, IsNumber, IsOptional, IsString } from 'class-validator';
-import { IsNotExist } from '../../decorators/exists.decorator';
+import { IsNotExist } from 'src/decorators';
 
 export class UploadImagesDto {
   @IsOptional()

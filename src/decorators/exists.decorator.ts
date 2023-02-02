@@ -1,5 +1,4 @@
 import { Injectable } from '@nestjs/common';
-import { PrismaService } from '../prisma/prisma.service';
 import { PrismaClient } from '@prisma/client';
 import {
   registerDecorator,
@@ -8,6 +7,7 @@ import {
   ValidatorConstraint,
   ValidatorConstraintInterface,
 } from 'class-validator';
+import { PrismaService } from 'src/prisma/prisma.service';
 
 type IgnorePrismaBuiltins<S extends string> = string extends S
   ? string

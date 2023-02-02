@@ -1,11 +1,11 @@
-import { ExtractJwt, Strategy } from 'passport-jwt';
-import { PassportStrategy } from '@nestjs/passport';
 import { Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
-import { Request } from 'express';
-import { PrismaService } from '../../prisma/prisma.service';
-import { exclude } from 'src/helpers/utils';
+import { PassportStrategy } from '@nestjs/passport';
 import { User } from '@prisma/client';
+import { Request } from 'express';
+import { ExtractJwt, Strategy } from 'passport-jwt';
+import { exclude } from 'src/helpers/utils';
+import { PrismaService } from 'src/prisma/prisma.service';
 
 @Injectable()
 export class JwtStrategy extends PassportStrategy(Strategy) {

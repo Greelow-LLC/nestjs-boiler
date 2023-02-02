@@ -6,7 +6,7 @@ import {
 } from '@nestjs/common';
 import { Reflector } from '@nestjs/core';
 import { Role } from '@prisma/client';
-import { ROLES_KEY } from '../decorators';
+import { ROLES_KEY } from 'src/auth/decorators';
 
 @Injectable()
 export class RolesGuard implements CanActivate {
@@ -22,7 +22,7 @@ export class RolesGuard implements CanActivate {
 
     const { user } = context.switchToHttp().getRequest();
 
-    const hasRoles = requiredRoles.some((role) => user.roles?.includes(role));
+    const hasRoles = requiredRoles.some(role => user.roles?.includes(role));
 
     if (!hasRoles)
       throw new ForbiddenException('You are not authorized to do this action');
