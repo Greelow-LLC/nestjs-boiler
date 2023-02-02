@@ -9,7 +9,6 @@ import {
   IsNotExistConstraint,
 } from 'src/decorators/';
 import { FileUploaderModule } from 'src/file-uploader/file-uploader.module';
-import { FileUploaderService } from 'src/file-uploader/file-uploader.service';
 import { MulterConfigModule } from 'src/multer/multer-config.module';
 import { PostModule } from 'src/post/post.module';
 import { PostMediaModule } from 'src/post-media/post-media.module';
@@ -37,7 +36,6 @@ import { UserModule } from 'src/user/user.module';
     },
     IsAlreadyExistConstraint,
     IsNotExistConstraint,
-    FileUploaderService,
   ],
 })
 export class AppModule {}
