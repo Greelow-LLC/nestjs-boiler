@@ -36,13 +36,13 @@ $ yarn env:pull
 # Must have docker-compose
 $ yarn db:up
 
-# Only development (also, do this every time a change on the schema is made)
+# For development (also, do this every time a change on the schema is made)
 $ yarn migrate
 $ yarn generate
 
 $ yarn seed
 
-# Only production
+# For production
 $ yarn db:deploy
 ```
 
