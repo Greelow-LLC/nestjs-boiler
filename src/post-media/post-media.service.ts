@@ -1,8 +1,8 @@
 import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { MediaType, User } from '@prisma/client';
-import { FileUploaderService } from 'src/file-uploader/file-uploader.service';
-import { DeleteImagesDto, UploadImagesDto } from 'src/post-media/dto';
-import { PrismaService } from 'src/prisma/prisma.service';
+import { FileUploaderService } from 'file-uploader/file-uploader.service';
+import { DeleteImagesDto, UploadImagesDto } from 'post-media/dto';
+import { PrismaService } from 'prisma/prisma.service';
 
 @Injectable()
 export class PostMediaService {

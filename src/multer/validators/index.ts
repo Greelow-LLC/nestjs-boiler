@@ -1,1 +1,1 @@
-export * from './image.validator';
+export * from 'multer/validators/image.validator';

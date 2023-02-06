@@ -11,10 +11,10 @@ import {
 } from '@nestjs/common';
 import { UseGuards } from '@nestjs/common';
 import { User } from '@prisma/client';
-import { Public, GetUser } from 'src/auth/decorators';
-import { JwtGuard } from 'src/auth/guards';
-import { UpdatePostDto, CreatePostDto, GetPostsDto } from 'src/post/dto';
-import { PostService } from 'src/post/post.service';
+import { Public, GetUser } from 'auth/decorators';
+import { JwtGuard } from 'auth/guards';
+import { UpdatePostDto, CreatePostDto, GetPostsDto } from 'post/dto';
+import { PostService } from 'post/post.service';
 
 @UseGuards(JwtGuard)
 @Controller('posts')

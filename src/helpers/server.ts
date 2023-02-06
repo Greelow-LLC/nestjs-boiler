@@ -5,10 +5,10 @@ import {
 } from '@nestjs/common';
 import { HttpAdapterHost } from '@nestjs/core';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
+import { AppModule } from 'app.module';
 import { useContainer } from 'class-validator';
 import * as cookieParser from 'cookie-parser';
 import { PrismaClientExceptionFilter } from 'nestjs-prisma';
-import { AppModule } from 'src/app.module';
 
 export const useAppMiddlewares = (app: INestApplication) => {
   app.use(cookieParser());

@@ -1,1 +1,1 @@
-export * from './file-type-validator.pipe';
+export * from 'multer/pipes/file-type-validator.pipe';

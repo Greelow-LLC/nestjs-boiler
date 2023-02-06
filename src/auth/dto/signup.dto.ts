@@ -1,5 +1,5 @@
 import { IsEmail, IsNotEmpty, IsString, MinLength } from 'class-validator';
-import { IsAlreadyExist } from 'src/decorators';
+import { IsAlreadyExist } from 'decorators';
 
 export class SignupDto {
   @IsNotEmpty({ message: 'Email field is required' })

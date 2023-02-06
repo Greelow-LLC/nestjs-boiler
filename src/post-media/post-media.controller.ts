@@ -8,12 +8,12 @@ import {
 } from '@nestjs/common';
 import { FilesInterceptor } from '@nestjs/platform-express';
 import { Role, User } from '@prisma/client';
-import { GetUser, Roles } from 'src/auth/decorators';
-import { RolesGuard, JwtGuard } from 'src/auth/guards';
-import { RemoveFilesInterceptor } from 'src/interpectors';
-import { imageValidator } from 'src/multer/validators';
-import { DeleteImagesDto, UploadImagesDto } from 'src/post-media/dto';
-import { PostMediaService } from 'src/post-media/post-media.service';
+import { GetUser, Roles } from 'auth/decorators';
+import { RolesGuard, JwtGuard } from 'auth/guards';
+import { RemoveFilesInterceptor } from 'interceptors';
+import { imageValidator } from 'multer/validators';
+import { DeleteImagesDto, UploadImagesDto } from 'post-media/dto';
+import { PostMediaService } from 'post-media/post-media.service';
 
 @UseGuards(JwtGuard, RolesGuard)
 @Controller('posts-media')

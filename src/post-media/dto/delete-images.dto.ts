@@ -1,6 +1,6 @@
 import { Post } from '@prisma/client';
 import { IsNotEmpty, IsNumber, IsString } from 'class-validator';
-import { IsNotExist } from 'src/decorators';
+import { IsNotExist } from 'decorators';
 
 export class DeleteImagesDto {
   @IsNotEmpty({ message: 'Keys field is required' })

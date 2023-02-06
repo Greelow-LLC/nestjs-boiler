@@ -1,7 +1,6 @@
 import { NestFactory } from '@nestjs/core';
-import { AppModule } from 'src/app.module';
-
-import { useAppMiddlewares } from '../utils';
+import { AppModule } from 'app.module';
+import { useAppMiddlewares } from 'helpers/server';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule, { cors: true });

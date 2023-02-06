@@ -1,6 +1,6 @@
 import { Profile } from '@prisma/client';
 import { IsNumber, IsOptional } from 'class-validator';
-import { IsNotExist } from 'src/decorators';
+import { IsNotExist } from 'decorators';
 
 export class GetPostsDto {
   @IsOptional()

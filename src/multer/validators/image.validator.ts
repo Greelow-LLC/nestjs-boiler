@@ -1,5 +1,5 @@
 import { ParseFilePipe } from '@nestjs/common';
-import { FileTypeValidator } from 'src/multer/pipes';
+import { FileTypeValidator } from 'multer/pipes';
 
 const allowedFiles = ['jpeg', 'jpg', 'JPG', 'JPEG', 'png'];
 

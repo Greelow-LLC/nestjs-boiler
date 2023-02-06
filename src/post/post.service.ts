@@ -4,8 +4,8 @@ import {
   UnauthorizedException,
 } from '@nestjs/common';
 import { User } from '@prisma/client';
-import { UpdatePostDto, CreatePostDto } from 'src/post/dto';
-import { PrismaService } from 'src/prisma/prisma.service';
+import { UpdatePostDto, CreatePostDto } from 'post/dto';
+import { PrismaService } from 'prisma/prisma.service';
 
 @Injectable()
 export class PostService {

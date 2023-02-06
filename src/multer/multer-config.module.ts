@@ -1,6 +1,6 @@
 import { Global, Module } from '@nestjs/common';
 import { MulterModule } from '@nestjs/platform-express';
-import multerConfig from 'src/multer/config/multer-config';
+import multerConfig from 'multer/config/multer-config';
 
 @Global()
 @Module({

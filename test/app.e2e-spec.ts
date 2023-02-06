@@ -4,8 +4,8 @@ import { spec, request } from 'pactum';
 
 import { AppModule } from '../src/app.module';
 import { SignupDto } from '../src/auth/dto/signup.dto';
+import { useAppMiddlewares } from '../src/helpers/server';
 import { PrismaService } from '../src/prisma/prisma.service';
-import { useAppMiddlewares } from '../utils';
 
 describe('App e2e', () => {
   const LOCAL_URL = 'http://localhost:3333';

@@ -1,2 +1,2 @@
-export * from './upload-images.dto';
-export * from './delete-images.dto';
+export * from 'post-media/dto/upload-images.dto';
+export * from 'post-media/dto//delete-images.dto';
