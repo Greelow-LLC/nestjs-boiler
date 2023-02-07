@@ -2,7 +2,7 @@ import { PrismaClient, Role } from '@prisma/client';
 import * as argon from 'argon2';
 
 export const seedUsers = async (prisma: PrismaClient) => {
-  const password = await argon.hash('nico1234');
+  const password = await argon.hash('123456');
 
   return Promise.all([
     prisma.user.upsert({
