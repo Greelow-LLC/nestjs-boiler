@@ -1,4 +1,4 @@
-import { Injectable, UnauthorizedException } from '@nestjs/common';
+import { Injectable, ForbiddenException } from '@nestjs/common';
 import { MediaType, User } from '@prisma/client';
 import { FileUploaderService } from 'file-uploader/file-uploader.service';
 import { DeleteImagesDto, UploadImagesDto } from 'post-media/dto';
@@ -26,9 +26,7 @@ export class PostMediaService {
     });
 
     if (!post)
-      throw new UnauthorizedException(
-        'You are not authorized to do this action',
-      );
+      throw new ForbiddenException('You are not authorized to do this action');
 
     const results = await this.fileUploaderService.uploadFiles(images);
 
@@ -57,18 +55,14 @@ export class PostMediaService {
     });
 
     if (!post)
-      throw new UnauthorizedException(
-        'You are not authorized to do this action',
-      );
+      throw new ForbiddenException('You are not authorized to do this action');
 
     const postMedias = await this.prisma.postMedia.findMany({
       where: { key: { in: dto.keys }, postId: post.id },
     });
 
     if (!postMedias.length)
-      throw new UnauthorizedException(
-        'You are not authorized to do this action',
-      );
+      throw new ForbiddenException('You are not authorized to do this action');
 
     await this.prisma.postMedia.deleteMany({
       where: { id: { in: postMedias.map(({ id }) => id) } },

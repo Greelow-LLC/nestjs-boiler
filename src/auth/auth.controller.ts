@@ -42,12 +42,12 @@ export class AuthController {
 
   @Get('signout')
   async logout(@Res({ passthrough: true }) res: Response) {
-    res.cookie('token-nesthw', '', { expires: new Date() });
+    res.cookie('token-boiler', '', { expires: new Date() });
     return { success: true };
   }
 
   signCookie(res: Response, token: string) {
-    return res.cookie('token-nesthw', token, {
+    return res.cookie('token-boiler', token, {
       httpOnly: true,
       maxAge: 60 * 60 * 24 * 365 * 1000,
     });

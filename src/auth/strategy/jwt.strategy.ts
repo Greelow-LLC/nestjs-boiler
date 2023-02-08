@@ -17,8 +17,8 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
   }
 
   private static extractJWT(req: Request): string | null {
-    if (req.cookies && 'token-nesthw' in req.cookies) {
-      return req.cookies['token-nesthw'];
+    if (req.cookies && 'token-boiler' in req.cookies) {
+      return req.cookies['token-boiler'];
     }
     return null;
   }
