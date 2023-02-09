@@ -6,6 +6,6 @@ export class CreatePostDto {
   title: string;
 
   @IsOptional()
-  @IsString({ message: 'Description field must be a string' })
-  description?: string;
+  @IsString({ message: 'content field must be a string' })
+  content?: string;
 }

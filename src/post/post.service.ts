@@ -29,6 +29,7 @@ export class PostService {
       where: {
         ...(userId && { authorId: profile.id }),
       },
+      orderBy: { createdAt: 'desc' },
       include: {
         author: true,
         medias: true,

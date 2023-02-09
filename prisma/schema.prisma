@@ -51,7 +51,7 @@ model Post {
   updatedAt DateTime @updatedAt
 
   title       String
-  description String?
+  content String?
 
   author   Profile @relation(fields: [authorId], references: [id])
   authorId Int

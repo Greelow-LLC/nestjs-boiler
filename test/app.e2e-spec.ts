@@ -187,7 +187,7 @@ describe('App e2e', () => {
   describe('Post', () => {
     const postDto = {
       title: 'Post',
-      description: 'This is a post description',
+      content: 'This is a post description',
     };
 
     const editPostDto = { ...postDto, title: 'Post updated' };
