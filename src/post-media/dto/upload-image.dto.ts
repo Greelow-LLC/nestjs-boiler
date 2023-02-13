@@ -2,7 +2,7 @@ import { Post } from '@prisma/client';
 import { IsNotEmpty, IsNumber, IsOptional, IsString } from 'class-validator';
 import { IsNotExist } from 'decorators';
 
-export class UploadImagesDto {
+export class UploadImageDto {
   @IsOptional()
   @IsString({ message: 'Alt field must be a string' })
   alt?: string;

@@ -12,14 +12,12 @@ import { catchError, tap } from 'rxjs/operators';
 @Injectable()
 export class RemoveFilesInterceptor implements NestInterceptor {
   intercept(context: ExecutionContext, next: CallHandler): Observable<any> {
-    const files = context.switchToHttp().getRequest().files;
+    const file = context.switchToHttp().getRequest().image;
 
     return next.handle().pipe(
-      tap(({ images }) =>
-        images.map((file: Express.Multer.File) => fs.unlinkSync(file.path)),
-      ),
+      tap(({ image: file }) => fs.unlinkSync(file.path)),
       catchError(err => {
-        files.map((file: Express.Multer.File) => fs.unlinkSync(file.path));
+        fs.unlinkSync(file.path);
         return throwError(() => err);
       }),
     );

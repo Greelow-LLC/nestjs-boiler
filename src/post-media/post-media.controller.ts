@@ -1,43 +1,50 @@
 import {
   Body,
   Controller,
+  Delete,
+  Param,
   Post,
-  UploadedFiles,
+  UploadedFile,
   UseGuards,
   UseInterceptors,
 } from '@nestjs/common';
-import { FilesInterceptor } from '@nestjs/platform-express';
-import { Role, User } from '@prisma/client';
+import { FileInterceptor } from '@nestjs/platform-express';
+import { Post as PostModel, PostMedia, Role, User } from '@prisma/client';
 import { GetUser, Roles } from 'auth/decorators';
 import { RolesGuard, JwtGuard } from 'auth/guards';
 import { RemoveFilesInterceptor } from 'interceptors';
 import { imageValidator } from 'multer/validators';
-import { DeleteImagesDto, UploadImagesDto } from 'post-media/dto';
+// import { ExistsPipe } from 'pipes';
+import { UploadImageDto } from 'post-media/dto';
 import { PostMediaService } from 'post-media/post-media.service';
+import { PrismaService } from 'prisma/prisma.service';
 
 @UseGuards(JwtGuard, RolesGuard)
 @Controller('posts-media')
 export class PostMediaController {
   constructor(private postMediaService: PostMediaService) {}
 
-  @Post('/upload-images')
+  @Post('/image/upload')
   @Roles(Role.ADMIN)
-  @UseInterceptors(FilesInterceptor('files'), RemoveFilesInterceptor)
-  uploadImages(
-    @UploadedFiles(imageValidator)
-    images: Express.Multer.File[],
-    @Body() dto: UploadImagesDto,
+  @UseInterceptors(FileInterceptor('image'), RemoveFilesInterceptor)
+  uploadImage(
+    @UploadedFile(imageValidator)
+    image: Express.Multer.File,
+    @Body() dto: UploadImageDto,
     @GetUser('id') userId: User['id'],
   ) {
-    return this.postMediaService.uploadImages(images, dto, userId);
+    return this.postMediaService.uploadImage(image, dto, userId);
   }
 
-  @Post('/delete-images')
+  @Delete('/image/delete/:key/:postId')
   @Roles(Role.ADMIN)
-  deleteImages(
-    @Body() dto: DeleteImagesDto,
+  deleteImage(
+    // @Param(new ExistsPipe(PostModel))
+    // params: { key: PostMedia['key']; postId: PostModel['id'] },
     @GetUser('id') userId: User['id'],
   ) {
-    return this.postMediaService.deleteImages(dto, userId);
+    // console.log(params);
+    // return { params };
+    // return this.postMediaService.deleteImage(dto, userId);
   }
 }
