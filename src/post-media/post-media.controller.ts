@@ -3,6 +3,7 @@ import {
   Controller,
   Delete,
   Param,
+  ParseIntPipe,
   Post,
   UploadedFile,
   UseGuards,
@@ -14,10 +15,9 @@ import { GetUser, Roles } from 'auth/decorators';
 import { RolesGuard, JwtGuard } from 'auth/guards';
 import { RemoveFilesInterceptor } from 'interceptors';
 import { imageValidator } from 'multer/validators';
-// import { ExistsPipe } from 'pipes';
+import { ExistsByIdPipe } from 'pipes';
 import { UploadImageDto } from 'post-media/dto';
 import { PostMediaService } from 'post-media/post-media.service';
-import { PrismaService } from 'prisma/prisma.service';
 
 @UseGuards(JwtGuard, RolesGuard)
 @Controller('posts-media')
@@ -39,12 +39,10 @@ export class PostMediaController {
   @Delete('/image/delete/:key/:postId')
   @Roles(Role.ADMIN)
   deleteImage(
-    // @Param(new ExistsPipe(PostModel))
-    // params: { key: PostMedia['key']; postId: PostModel['id'] },
+    @Param('postId', ParseIntPipe, ExistsByIdPipe) postId: PostModel['id'],
+    @Param('key') key: PostMedia['key'],
     @GetUser('id') userId: User['id'],
   ) {
-    // console.log(params);
-    // return { params };
-    // return this.postMediaService.deleteImage(dto, userId);
+    return this.postMediaService.deleteImage(key, postId, userId);
   }
 }

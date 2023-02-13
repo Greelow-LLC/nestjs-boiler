@@ -1,1 +1,1 @@
-// export * from 'pipes/exists.pipe';
+export * from 'pipes/exists-by-id.pipe';
