@@ -1,3 +1,5 @@
+import { IncomingMessage } from 'http';
+
 import {
   INestApplication,
   ValidationPipe,
@@ -15,17 +17,22 @@ import { PrismaClientExceptionFilter } from 'nestjs-prisma';
 export const useAppMiddlewares = (app: INestApplication) => {
   app.use(cookieParser());
   app.use(
-    morgan(function (tokens, req, res) {
-      return (
-        chalk.cyanBright(tokens.method(req, res)) +
-        ' ' +
-        chalk.redBright(tokens.url(req, res)) +
-        ' ' +
-        chalk.cyan(tokens.status(req, res)) +
-        ' ' +
-        chalk.yellow(tokens['response-time'](req, res))
-      );
-    }),
+    morgan(
+      function (tokens, req, res) {
+        return (
+          chalk.cyanBright(tokens.method(req, res)) +
+          ' ' +
+          chalk.redBright(tokens.url(req, res)) +
+          ' ' +
+          chalk.cyan(tokens.status(req, res)) +
+          ' ' +
+          chalk.yellow(tokens['response-time'](req, res))
+        );
+      },
+      {
+        skip: (req: IncomingMessage) => req.method === 'OPTIONS',
+      },
+    ),
   );
 
   //Use validations in all app
