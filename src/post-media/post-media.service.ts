@@ -22,7 +22,7 @@ export class PostMediaService {
     });
 
     const post = await this.prisma.post.findFirst({
-      where: { authorId: profile.id, id: dto.postId },
+      where: { authorId: profile.id, id: +dto.postId },
     });
 
     if (!post)
@@ -34,7 +34,7 @@ export class PostMediaService {
       data: {
         key: Key,
         src: Location,
-        postId: dto.postId,
+        postId: +dto.postId,
         type: MediaType.IMAGE,
         alt: dto.alt,
       },

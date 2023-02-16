@@ -64,13 +64,15 @@ export class PostService {
   async deletePost(id: number, user: User) {
     const postToDelete = await this.prisma.post.findUnique({
       where: { id },
-      include: { author: true },
+      include: { author: true, medias: true },
     });
 
     if (!postToDelete) throw new ForbiddenException("Post doesn't exist");
 
     if (postToDelete.author.userId !== user.id)
       throw new ForbiddenException('You are not authorized to do this action');
+
+    // await
 
     return this.prisma.post.delete({ where: { id: postToDelete.id } });
   }
