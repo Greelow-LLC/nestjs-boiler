@@ -1,11 +1,15 @@
 import { Injectable, ForbiddenException } from '@nestjs/common';
 import { User } from '@prisma/client';
 import { UpdatePostDto, CreatePostDto } from 'post/dto';
+import { PostMediaService } from 'post-media/post-media.service';
 import { PrismaService } from 'prisma/prisma.service';
 
 @Injectable()
 export class PostService {
-  constructor(private prisma: PrismaService) {}
+  constructor(
+    private prisma: PrismaService,
+    private postMediaService: PostMediaService,
+  ) {}
 
   async createPost(userId: User['id'], dto: CreatePostDto) {
     const author = await this.prisma.profile.findUnique({ where: { userId } });
@@ -72,7 +76,10 @@ export class PostService {
     if (postToDelete.author.userId !== user.id)
       throw new ForbiddenException('You are not authorized to do this action');
 
-    // await
+    if (postToDelete.medias.length) {
+      const keys = postToDelete.medias.map(({ key }) => key);
+      await this.postMediaService.deleteImages(keys, postToDelete.id, user.id);
+    }
 
     return this.prisma.post.delete({ where: { id: postToDelete.id } });
   }

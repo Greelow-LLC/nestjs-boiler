@@ -5,5 +5,6 @@ import { PostMediaService } from 'post-media/post-media.service';
 @Module({
   providers: [PostMediaService],
   controllers: [PostMediaController],
+  exports: [PostMediaService],
 })
 export class PostMediaModule {}

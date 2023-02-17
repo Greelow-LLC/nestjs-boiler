@@ -76,4 +76,38 @@ export class PostMediaService {
 
     return { images: postMedia };
   }
+
+  async deleteImages(
+    keys: PostMedia['key'][],
+    postId: Post['id'],
+    userId: User['id'],
+  ) {
+    const { profile } = await this.prisma.user.findFirst({
+      where: { id: userId },
+      include: { profile: true },
+    });
+
+    const post = await this.prisma.post.findFirst({
+      include: { medias: true },
+      where: { authorId: profile.id, id: postId },
+    });
+
+    if (!post)
+      throw new ForbiddenException('You are not authorized to do this action');
+
+    const postMedias = await this.prisma.postMedia.findMany({
+      where: { key: { in: keys }, postId: post.id },
+    });
+
+    if (!postMedias.length)
+      throw new ForbiddenException('You are not authorized to do this action');
+
+    await this.prisma.postMedia.deleteMany({
+      where: { id: { in: postMedias.map(({ id }) => id) } },
+    });
+
+    await this.fileUploaderService.deleteFiles(keys);
+
+    return { images: postMedias };
+  }
 }

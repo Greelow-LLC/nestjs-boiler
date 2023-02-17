@@ -40,7 +40,7 @@ export class FileUploaderService {
       throw new BadRequestException('A key is required');
 
     return Promise.all(
-      keys.map(key => this.s3Operation(null, 'deleteObject', key)),
+      keys.map(async key => await this.s3Operation(null, 'deleteObject', key)),
     );
   }
 
