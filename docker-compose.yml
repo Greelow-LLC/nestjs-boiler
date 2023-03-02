@@ -1,6 +1,6 @@
 version: '3.8'
 services:
-  db:
+  db-boiler:
     container_name: nestjs-boiler
     image: postgres:latest
     ports:
@@ -11,7 +11,7 @@ services:
       - POSTGRES_DB=${DB_NAME}
     networks:
       - greelow
-  test-db:
+  test-db-boiler:
     container_name: nestjs-boiler-test-db
     image: postgres:latest
     ports:
