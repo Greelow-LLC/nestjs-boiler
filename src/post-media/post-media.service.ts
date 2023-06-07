@@ -36,6 +36,7 @@ export class PostMediaService {
         src: Location,
         type: MediaType.IMAGE,
         alt: dto.alt,
+        postId: +dto.postId,
       },
     });
 
