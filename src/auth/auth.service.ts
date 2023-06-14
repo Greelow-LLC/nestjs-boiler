@@ -3,6 +3,7 @@ import { ConfigService } from '@nestjs/config';
 import { JwtService } from '@nestjs/jwt';
 import * as argon from 'argon2';
 import { SigninDto, SignupDto } from 'auth/dto';
+import { FirebaseService } from 'firebase/firebase.service';
 import { PrismaService } from 'prisma/prisma.service';
 
 @Injectable()
@@ -11,6 +12,7 @@ export class AuthService {
     private prisma: PrismaService,
     private jwt: JwtService,
     private config: ConfigService,
+    private firebase: FirebaseService,
   ) {}
 
   async signup(dto: SignupDto) {
@@ -37,18 +39,15 @@ export class AuthService {
   }
 
   async signin(dto: SigninDto) {
-    const user = await this.prisma.user.findUnique({
-      where: { email: dto.email },
-    });
+    const decodedToken = await this.firebase.getAuth().verifyIdToken(dto.token);
+    console.log(decodedToken);
 
+    const user = await this.prisma.user.findUnique({
+      where: { email: decodedToken.email },
+    });
     if (!user) throw new ForbiddenException('Credentials incorrect');
 
-    const isValidPassword = await argon.verify(user.password, dto.password);
-
-    if (!isValidPassword) throw new ForbiddenException('Credentials incorrect');
-
-    const token = await this.signToken(user.id, user.email);
-
+    const token = await this.signToken(user.id, decodedToken.email);
     return token;
   }
 
