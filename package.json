@@ -54,6 +54,7 @@
     "class-validator": "^0.14.0",
     "cookie-parser": "^1.4.6",
     "dotenv-cli": "^7.0.0",
+    "firebase-admin": "^11.9.0",
     "nestjs-prisma": "^0.20.0",
     "passport": "^0.6.0",
     "passport-jwt": "^4.0.1",

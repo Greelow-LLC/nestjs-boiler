@@ -6,6 +6,7 @@ import { ApiKeyModule } from 'api-key/api-key.module';
 import { AuthModule } from 'auth/auth.module';
 import { IsAlreadyExistConstraint, IsNotExistConstraint } from 'decorators/';
 import { FileUploaderModule } from 'file-uploader/file-uploader.module';
+import { FirebaseModule } from 'firebase/firebase.module';
 import { MulterConfigModule } from 'multer/multer-config.module';
 import { PostModule } from 'post/post.module';
 import { PostMediaModule } from 'post-media/post-media.module';
@@ -25,6 +26,7 @@ import { UserModule } from 'user/user.module';
     ProfileModule,
     PostModule,
     PostMediaModule,
+    FirebaseModule,
   ],
   providers: [
     {
