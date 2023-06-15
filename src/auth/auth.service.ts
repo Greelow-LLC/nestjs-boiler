@@ -40,7 +40,6 @@ export class AuthService {
 
   async signin(dto: SigninDto) {
     const decodedToken = await this.firebase.getAuth().verifyIdToken(dto.token);
-    console.log(decodedToken);
 
     const user = await this.prisma.user.findUnique({
       where: { email: decodedToken.email },
